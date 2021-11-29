@@ -30,41 +30,42 @@ workflows based on the files in your repository.
 
 ### Step 1 - Go to the `Actions` tab for your repository.
 
-    ![Marked Actions tab on page](imgs/find-actions-in-tab.PNG)
+  ![Marked Actions tab on page](imgs/find-actions-in-tab.PNG)
 
 
 ### Step 2 - Find the `.NET` workflow and select `Set up this workflow`.
 
-    ![The .NET workflow illustration](imgs/dotnet-workflow.PNG)
+  ![The .NET workflow illustration](imgs/dotnet-workflow.PNG)
 
-    A yml file containing the workflow is automatically generated for you. 
+A yml file containing the workflow is automatically generated for you. 
 
-    > :information_source: **Notice the path to the file `.github/workflows`**: All workflows must be placed in this directory to be picked up by GitHub.
+> :information_source: **Notice the path to the file `.github/workflows`**:All workflows must be placed in this directory to be picked up by GitHub.
 
-### Step 3 - Change line 19 from
+### Step 3 - Set the correct .NET version
 
-    ```yml
-    dotnet-version: 5.0.x
-    ```
+Change line 19 from
+```yml
+dotnet-version: 5.0.x
+```
+to 
+```yml
+dotnet-version: 6.0.x
+```
 
-    to 
+### Step 4 - Reflection
 
-    ```yml
-    dotnet-version: 6.0.x
-    ```
+ Study the workflow file. Can you identify the key components? 
 
-### Reflection - Study the workflow file. Can you identify the key components? 
-
-    - Which events does the workflow listen after? 
-    - The runner defined, is it a self-hosted agent or a GitHub runner?
-    - Could you think of another runner that could have been used? [Available runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources)
+  - Which events does the workflow listen after? 
+  - The runner defined, is it a self-hosted agent or a GitHub runner?
+  - Could you think of another runner that could have been used? [Available runners](https://docs.github.com/en/actions/using-github-hosted-runnersabout-github-hosted-runners#supported-runners-and-hardware-resources)
 
 
-### Step 4 - Commit the file to the repository 
+### Step 5 - Save the workflow
 
-    ![Commit details](imgs/start-commit.PNG)
+Commit the file as shown in the picture bewlow. Once completed, follow the workflow run from the `Actions` tab in GitHub.
 
-### Step 5 - Follow the workflow run from the `Actions` tab.
+  ![Commit details](imgs/start-commit.PNG)
 
 ## Task 2.2 - Customize the template workflow 
 
@@ -78,16 +79,23 @@ Let's go ahead and make some customizations for the workflow!
 Using your preferred tool, clone the forked repository to your local machine.
 The following steps should be executed in a code editor, e.g. Visual Studio Code.
 
-### Step 2 - Re-name the created yml file. 
+### Step 2 - Re-name the created yml file and workflow. 
 
-When working with workflows in larger projects, following a naming standard to quickly identify what a workflow is related to could be useful.
+When setting up workflows within larger projects, following a naming standard, allows the developers to quickly identify what a workflow is related to.
 
-Give your existing workflow a reasonable name.
+The template we have used has set the name of the workflow to `.NET` 
+which isn't nessesarily very descriptive. 
+
+The name of the workflow is declared in the first line of `dotnet.yml`.
+
+**Give the workflow a reasonable name and rename the file.**
 
 ### Step 3 - Remove the PR event trigger for the workflow
 
 As this is a workshop for you to learn GitHub Actions,
 we do not expect any pull requests for this repository.
+
+**Simplify your workflow file by removing the pull request event, but leaving the push event for main.** 
 
 ### Step 4 - Add a scheduled event trigger for the workflow
 
@@ -97,6 +105,8 @@ can trigger your workflow based on a schedule. This could be useful if there are
 Read up on [how to set up a scheduled event trigger](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#scheduled-events). 
 
 **Can you schedule this workflow to trigger at the top of every hour, Monday - Friday?**
+
+
 
 
 

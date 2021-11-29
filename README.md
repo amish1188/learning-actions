@@ -135,7 +135,7 @@ Below is an example of some issues from [Azure's repository azure-sdk-for-net](h
 We will be setting up a workflow to automatically label pull requests based on the files that the PR modifies using an action from the GitHub Marketplace.
 
 
-### - [ ] Step 1 - Define the labels for the workflow to use
+### Step 1 - Define the labels for the workflow to use
 
 A prerequisite for the action we are using is a file that defines the labels and the files in the repository that each label applies to.
 
@@ -153,7 +153,17 @@ area/development:
   - 'SimpleFunctionApp/*'
 ```
 
-This defines thre labels `area/test`, `area/automation`, and `area/development`.
+The file defines three labels for the repository. Below you find a description of 
+each label.
+
+|Label            |Description                  |
+|-----------------|-----------------------------|
+|area/test        | Covers all changes under the `SimpleFunctionApp.Test` directory |
+|area/automation  | Covers all changes under the `.github` directory  |
+|area/development | Covers all changes under the `SimpleFunctionApp` directory  |
+--------
+
+**Can you think of another abel to add to the repository? **
 
 ### Step 2 - Set up a workflow for automatic labeling on PR
 

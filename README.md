@@ -145,9 +145,7 @@ A prerequisite for the action we are using is a file that defines the labels and
 Create an empty file called `labeler.yml` in the `.github` folder
 and copy the content below.
 
-  >  ⚠️ Note the file ending is `.yml` and not `.yaml` as we have set for the workflows. The workflow will fail if the file name doesn't match exactly what the action expects.
-
-```yaml
+```yml
 area/test:
   - 'SimpleFunctionApp.Test/*'
 
@@ -172,10 +170,10 @@ each label.
 
 ### Step 2 - Set up a workflow for automatic labeling on PR
 
-In the `.github/workflows` folder create a new file and name it ``pr-labeler.yaml`.
+In the `.github/workflows` folder create a new file and name it ``pr-labeler.yml`.
 Copy the code below into the file.
 
-```yaml
+```yml
 name: Pull Request Labeler
 on: [pull_request_target]
 

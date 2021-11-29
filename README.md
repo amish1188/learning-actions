@@ -276,7 +276,7 @@ In task 4 we will integrate our workflow with [SonarCloud](https://sonarcloud.io
 ### Step 1 - Log onto Sonarcloud
 Open the [SonarCloud site](https://sonarcloud.io/) in a browser and log in with your GitHub credentials.
 
-### Step 2 - Set up a new project
+### Step 2 - Set up a new SonarCloud project
 
 1. In the top left corner select the `+` icon and select `Analyze new project`.
 
@@ -295,9 +295,36 @@ Open the [SonarCloud site](https://sonarcloud.io/) in a browser and log in with 
 
     ![Set up public SonarCloud project](imgs/sonar-complete-project.PNG)
 
-### Step 3 - 
+### Step 3 - Configure the SonarCloud project
 
+1. On the project page, select `GitHub Actions` as your analysis method.
+    ![The GitHub Actions tile](imgs/sonar-select-method.PNG)
+
+    You will be presented with a secret that should be created in your repository.
+    We will reference back to these values, so keep the tab open in your browser.    
+    
+    ![Details for repository secret](imgs/sonar-repo-secret.PNG)
  
+ 2. In a new tab in your browser, navigate to the secrets section of your forked workshop repository.
+
+    - Select Settings in the top menu of the repository
+    - Select Secrets in the left side menu 
+    - Click `new repository secret`
+
+    ![Details for repository secret](imgs/repo-secrets-settings.PNG)
+
+3. Referring back to the values in SonarCloud, create a new secret in your repository.
+    Complete the secret setup by clicking `Add secret`.
+
+    ![Secret creation](imgs/repo-secrets-creation.png)
+
+4. If the creation was successfull, your secret shuld be diplayed under repository secrets at the bottom of the page.
+
+    ![Configured secret displayed in GitHub](imgs/repo-secrets-verification.PNG)
+
+### Step 4 - Set up the GitHub workflow
+
+
 
 
 Useful links

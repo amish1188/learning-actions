@@ -1,10 +1,10 @@
 ```yaml
 area/test:
-  - 'SimpleFunctionApp.Test/*'
+  - 'SampleFunctionApp.Test/*'
 
 area/automation:
   - '.github/**/*'
 
 area/development:
-  - 'SimpleFunctionApp/*'
+  - 'SampleFunctionApp/*'
 ```

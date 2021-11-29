@@ -24,10 +24,11 @@ readily available for you, and GitHub even recommends suitable
 workflows based on the files in your repository.
 
 
-**Lets try setting up a build and test workflow from a template!**
+**Let's try setting up a build and test workflow from a template!**
 ## ✏️ Task 2.1 - Set up a workflow from template
 
-A given workflow for a repository woul
+An action you will find in most repositories, is that which builds your code and runs unit and/or integration tests that are available. Follow the steps to see how this can be set up.
+
 ### Step 1 - Go to the `Actions` tab for your repository.
 
   ![Marked Actions tab on page](imgs/find-actions-in-tab.PNG)
@@ -42,6 +43,8 @@ A yml file containing the workflow is automatically generated for you.
 > ⚠️ Note the path to the file **`.github/workflows`**. All workflows must be placed in this directory to be picked up by GitHub.
 
 ### Step 3 - Set the correct .NET version
+
+The default build task for .NET provided by GitHub is configured to build .NET Core 5 solutions. As our solution runs with .NET 6, a change is required for the agent to have the correct SKDs installed.
 
 Change line 19 from
 ```yml
@@ -58,12 +61,12 @@ dotnet-version: 6.0.x
 
   - Which events does the workflow listen after? 
   - The runner defined, is it a self-hosted agent or a GitHub runner?
-  - Could you think of another runner that could have been used? [Available runners](https://docs.github.com/en/actions/using-github-hosted-runnersabout-github-hosted-runners#supported-runners-and-hardware-resources)
+  - Could you think of another runner that could have been used? [Available runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)
 
 
 ### Step 5 - Save the workflow
 
-Commit the file as shown in the picture bewlow. Once completed, follow the workflow run from the `Actions` tab in GitHub.
+Commit the file as shown in the picture below. Once completed, follow the workflow run from the `Actions` tab in GitHub.
 
   ![Commit details](imgs/start-commit.PNG)
 
@@ -81,14 +84,13 @@ The following steps should be executed in a code editor, e.g. Visual Studio Code
 
 ### Step 2 - Re-name the created yml file and workflow. 
 
-When setting up workflows within larger projects, following a naming standard, allows the developers to quickly identify what a workflow is related to.
+When setting up workflows within larger projects, following a naming standard allows the developers to quickly identify what a workflow is related to.
 
-The template we have used has set the name of the workflow to `.NET` 
-which isn't nessesarily very descriptive. 
+The default workflow name in the template is `.NET`, which isn't necessarily very descriptive. 
 
 The name of the workflow is declared in the first line of `dotnet.yml`.
 
-**Give the workflow a reasonable name and rename the file.**
+**Give the workflow a suitable name and rename the file.**
 
 ### Step 3 - Remove the PR event trigger for the workflow
 
@@ -162,7 +164,7 @@ each label.
 |area/development | Covers all changes under the `SimpleFunctionApp` directory  |
 --------
 
-**Can you think of another abel to add to the repository? **
+**Can you think of another abel to add to the repository?**
 
 ### Step 2 - Set up a workflow for automatic labeling on PR
 

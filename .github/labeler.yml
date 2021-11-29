@@ -1,8 +1,0 @@
-area/test:
-  - 'SampleFunctionApp.Test/*'
-
-area/automation:
-  - '.github/**/*'
-
-area/development:
-  - 'SampleFunctionApp/*'

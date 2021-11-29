@@ -1,4 +1,3 @@
-```yaml
 area/test:
   - 'SampleFunctionApp.Test/*'
 
@@ -7,4 +6,3 @@ area/automation:
 
 area/development:
   - 'SampleFunctionApp/*'
-```

@@ -139,7 +139,7 @@ We will be setting up a workflow to automatically label pull requests based on t
 
 A prerequisite for the action we are using is a file that defines the labels and the files in the repository that each label applies to.
 
-Create an empty file called `labeler.yaml` in the `.github` folder
+Create an empty file called `labeler.yml` in the `.github` folder
 and copy the content below.
 
 ```yaml

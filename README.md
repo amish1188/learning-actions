@@ -1,9 +1,7 @@
 # Learning GitHub Actions
-Welcome to this repository for learning GitHub Actions!
+Welcome to this workshop for learning GitHub Actions!
 
-
-This repository contains an Azure Function App project along with a unit test project. 
-For this workshop, your task is to build GitHub Actions to automate developer tasks for the repository. 
+For this workshop, your task is to build GitHub Actions to automate developer tasks for a public GitHub repository. 
 
 ## Pre requisites
 
@@ -14,8 +12,9 @@ If you dont have one, [a GitHub account can be created for free](https://github.
 
 ## Task 1 - Fork the repository to your own GitHub account
 
-Forkt he g
-In a tool of your choice clone the GitHub repository.
+We will be working with a repository that contains an Azure Function App project along with a unit test project. 
+
+Fork [the repository](https://github.com/acn-sbuad/learning-actions) to your personal GitHub account, and let's get started! 
 
 ## Task 2 - Automating building and running tests on project
 

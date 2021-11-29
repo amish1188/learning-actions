@@ -12,9 +12,6 @@ If you dont have one, [a GitHub account can be created for free](https://github.
 
 2. A code editor. We recommend [Visual Studio Code](https://code.visualstudio.com/).
 
-3. [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
-
-
 ## Task 1 - Fork the repository to your own GitHub account
 
 Forkt he g
@@ -29,7 +26,7 @@ workflows based on the files in your repository.
 
 
 **Lets try setting up a build and test workflow from a template!**
-## ✏️ Task 2.1 - up a workflow from template
+## ✏️ Task 2.1 - Set up a workflow from template
 
 A given workflow for a repository woul
 ### Step 1 - Go to the `Actions` tab for your repository.
@@ -205,9 +202,6 @@ Find the correct action to insert from [Github Marketplace for Actions](https://
 >:balloon: Hint: The action is published by `actions` and we are working on adding a `Label` to a pull request.
 
 
-
-
-
 ### Step 4 - Create a PR to test the new workflow
 
 In GitHub, navigate to `SampleFunctionApp.Test\FunctionsTest.cs`.
@@ -273,6 +267,38 @@ option and complete the pull request creation.
 
 Once the PR is create, follow the workflow run from the `Actions` tab in GitHub, and confirm that the PR is successfully labeled.
 
+## Task 4 - Integration with static code analysis tool
+
+In task 4 we will integrate our workflow with [SonarCloud](https://sonarcloud.io/) and trigger code analysis of our solution.
+
+
+## ✏️ Task 4.1 - Setting up a SonarCloud account and project
+
+### Step 1 - Log onto Sonarcloud
+Open the [SonarCloud site](https://sonarcloud.io/) in a browser and log in with your GitHub credentials.
+
+### Step 2 - Set up a new project
+
+1. In the top left corner select the `+` icon and select `Analyze new project`.
+
+    ![Create new project in SonarCloud](imgs/sonar-create-project.PNG)
+
+2. On the next page select organization, there should be an organization matching your GitHub username.
+
+3. Select the repository you are working with.
+
+4. Set up the project as a public project
+
+    ![Set up public SonarCloud project](imgs/sonar-free-project.PNG)
+
+    If successfull, you should be redirected to the landing page of the project. 
+    It should look something like this:
+
+    ![Set up public SonarCloud project](imgs/sonar-complete-project.PNG)
+
+### Step 3 - 
+
+ 
 
 
 Useful links

@@ -6,7 +6,7 @@ For this workshop, your task is to build GitHub Actions to automate developer ta
 ## Pre requisites
 
 1. A personal GitHub account. 
-If you dont have one, [a GitHub account can be created for free](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
+If you don't have one, [a GitHub account can be created for free](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
 
 2. A code editor. We recommend [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -225,7 +225,7 @@ Copy the code block below into the file.
 Your file should look like this after adding the new test.
 
 ```cs
-// ommited using statements
+// omitted using statements
 
 namespace SampleFunctionApp.Test
 {
@@ -292,7 +292,7 @@ Open the [SonarCloud site](https://sonarcloud.io/) in a browser and log in with 
 
     ![Set up public SonarCloud project](imgs/sonar-free-project.PNG)
 
-    If successfull, you should be redirected to the landing page of the project. 
+    If successful, you should be redirected to the landing page of the project. 
     It should look something like this:
 
     ![Set up public SonarCloud project](imgs/sonar-complete-project.PNG)
@@ -320,7 +320,7 @@ Open the [SonarCloud site](https://sonarcloud.io/) in a browser and log in with 
 
     ![Secret creation](imgs/repo-secrets-creation.png)
 
-4. If the creation was successfull, your secret shuld be diplayed under repository secrets at the bottom of the page.
+4. If the creation was successful, your secret should be displayed under repository secrets at the bottom of the page.
 
     ![Configured secret displayed in GitHub](imgs/repo-secrets-verification.PNG)
 
@@ -424,7 +424,7 @@ You complete workflow file should look something like this.
 
   In the first few lines of the file, the name of the workflow and events are defined.
   This workflow is triggered every time code is pushed to the `main` branch.
-  In addition, the workflos is triggered whenever a pull request is `opened`, `synchronized`, or `reopened`.
+  In addition, the workflow is triggered whenever a pull request is `opened`, `synchronized`, or `reopened`.
 
   ```yml
   jobs:

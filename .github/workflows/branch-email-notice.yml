@@ -1,11 +1,11 @@
 name: New branch - email notice
 on: 
-  create:
+  create
 
 jobs: 
   send email:
 
-    runs on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Send mail

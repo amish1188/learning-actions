@@ -1,5 +1,6 @@
 name: New branch - email notice
-on: create
+on: 
+  create:
 
 jobs: 
   send email:

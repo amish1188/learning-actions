@@ -341,14 +341,180 @@ folder. Name the file `dotnet-analysis.yml`.
 
 4. Change the name of the workflow to `.NET Analysis`
 
-5. Change the runner to `windows-2022`
+5. Change the branch trigger from `master` to `main`
 
-As we are running a .NET 6 project, we need to use an agent with the .NET 6 SDK installed, or install it manually. We are opting for the first option.
+    If you're anything like me, and apparently SonarCloud, 
+    it might seem like yesterday that GitHub started to name their main branches `main`.
+    This actually happened in October 2020, and I'm still having a hard time remembering to check out main instead of master. Anyways, back to the task at hand! 
 
+6. Change the runner to `windows-2022`
 
-6. On the second to last line add the following code. 
+    As we are running a .NET 6 project, we need to use a runner with the .NET 6 SDK installed, or install it manually. We are opting for the first option.
+
+7. On the second to last line add the following code. 
     Replace the placeholder `<insert_your_build_command>` 
     with `dotnet build`
+
+### Step 5 - Review the workflow
+
+You complete workflow file should look something like this.
+
+  ```yml
+  name: .NET Analysis
+  on:
+    push:
+      branches:
+        - main
+    pull_request:
+      types: [opened, synchronize, reopened]
+  jobs:
+    build:
+      name: Build
+      runs-on: windows-2022
+      steps:
+        - name: Set up JDK 11
+          uses: actions/setup-java@v1
+          with:
+            java-version: 1.11
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+        - name: Cache SonarCloud packages
+          uses: actions/cache@v1
+          with:
+            path: ~\sonar\cache
+            key: ${{ runner.os }}-sonar
+            restore-keys: ${{ runner.os }}-sonar
+        - name: Cache SonarCloud scanner
+          id: cache-sonar-scanner
+          uses: actions/cache@v1
+          with:
+            path: .\.sonar\scanner
+            key: ${{ runner.os }}-sonar-scanner
+            restore-keys: ${{ runner.os }}-sonar-scanner
+        - name: Install SonarCloud scanner
+          if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+          shell: powershell
+          run: |
+            New-Item -Path .\.sonar\scanner -ItemType Directory
+            dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+        - name: Build and analyze
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          shell: powershell
+          run: |
+            .\.sonar\scanner\dotnet-sonarscanner begin /k:"acn-sbuad_learning-actions" /o:"acn-sbuad" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+            dotnet build
+            .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+  ```
+  Let's go through each section of the file.
+
+  ```yml
+  name: .NET Analysis
+  on:
+    push:
+      branches:
+        - main
+    pull_request:
+      types: [opened, synchronize, reopened]
+  ```
+
+  In the first few lines of the file, the name of the workflow and events are defined.
+  This workflow is triggered every time code is pushed to the `main` branch.
+  In addition, the workflos is triggered whenever a pull request is `opened`, `synchronized`, or `reopened`.
+
+  ```yml
+  jobs:
+    build:
+      name: Build
+      runs-on: windows-2022
+  ```
+  Next, the job `build` with the display name `Build` is defined.
+  The workflow is set up to use a `windows-2022` runner to ensure we have the .NET 6 SDK available.
+  
+  The latter part of the yml file defines six steps.
+
+  ```yml
+ - name: Set up JDK 11
+   uses: actions/setup-java@v1
+   with:
+     java-version: 1.11
+  ``` 
+  This step sets up the required JDKs for running SonarCloud on the runner.
+  The display name `Set up JDK 11` is defined before it specifies to use an action from the GitHub Marketplace `actions/setup-java@v1` for setting up the required JDK version
+
+  ```yml
+  - uses: actions/checkout@v2
+    with:
+      fetch-depth: 0 
+  ```
+
+  The next step does not set a display name, but it is a step you will get very familiar with when working with workflows. It checks out you repository, so your workflow can access it.
+
+  `fetch-depth` is set to 0 to enable fetching of all history for all branches and tags.
+
+```yml
+```
+
+
+```yml
+```
+
+```yml
+```
+
+
+
+ 
+  - actions/checkout@v2
+  - Cache SonarCloud packages
+  - Install SonarCloud scanner
+  - Build and analyze
+
+  ```yml
+  steps:
+        - name: Set up JDK 11
+          uses: actions/setup-java@v1
+          with:
+            java-version: 1.11
+        
+        - name: Cache SonarCloud packages
+          uses: actions/cache@v1
+          with:
+            path: ~\sonar\cache
+            key: ${{ runner.os }}-sonar
+            restore-keys: ${{ runner.os }}-sonar
+        - name: Cache SonarCloud scanner
+          id: cache-sonar-scanner
+          uses: actions/cache@v1
+          with:
+            path: .\.sonar\scanner
+            key: ${{ runner.os }}-sonar-scanner
+            restore-keys: ${{ runner.os }}-sonar-scanner
+        - name: Install SonarCloud scanner
+          if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+          shell: powershell
+          run: |
+            New-Item -Path .\.sonar\scanner -ItemType Directory
+            dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+        - name: Build and analyze
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          shell: powershell
+          run: |
+            .\.sonar\scanner\dotnet-sonarscanner begin /k:"acn-sbuad_learning-actions" /o:"acn-sbuad" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+            dotnet build
+            .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+  ```
+
+
+  
+### Step 6 - Trigger SonarCloud analysis
+
+  ![SonarCloud report](imgs/sonar-report.PNG)
+
 
 
 

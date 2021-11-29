@@ -26,7 +26,7 @@ workflows based on the files in your repository.
 
 
 **Lets try setting up a build and test workflow from a template!**
-## Task 2.1 - up a workflow from template
+## :pencil2: Task 2.1 - up a workflow from template
 
 A given workflow for a repository woul
 ### Step 1 - Go to the `Actions` tab for your repository.
@@ -68,7 +68,7 @@ Commit the file as shown in the picture bewlow. Once completed, follow the workf
 
   ![Commit details](imgs/start-commit.PNG)
 
-## Task 2.2 - Customize the template workflow 
+## :pencil2: Task 2.2 - Customize the template workflow 
 
 It is seldom the case that you can create a workflow based on a template 
 and have it suit your needs out of the box. 
@@ -123,7 +123,7 @@ In task 3 we will explore some of the developer workflows that can be
 automated.
 
 
-## :balloon: Task 3.1 
+## :pencil2: Task 3.1 
 
 In projects with large code bases labels are often used for both issues and pull requests to identify which part of the solution they relate to. 
 

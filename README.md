@@ -142,6 +142,8 @@ A prerequisite for the action we are using is a file that defines the labels and
 Create an empty file called `labeler.yml` in the `.github` folder
 and copy the content below.
 
+  >  :warning: Note the file ending is `.yml` and not `.yaml` as we have set for the workflows. The workflow will fail if the file name doesn't match exactly what the action expects.
+
 ```yaml
 area/test:
   - 'SimpleFunctionApp.Test/*'
@@ -267,6 +269,9 @@ Make sure to give the change a descriptive name, select the `create a new branch
 option and complete the pull request creation.
 
   ![Create PR in GitHub](imgs/create-pr.PNG)
+
+Once the PR is create, follow the workflow run from the `Actions` tab in GitHub, and confirm that the PR is successfully labeled.
+
 
 
 Useful links

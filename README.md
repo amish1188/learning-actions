@@ -454,72 +454,71 @@ You complete workflow file should look something like this.
 
   `fetch-depth` is set to 0 to enable fetching of all history for all branches and tags.
 
-```yml
-```
-
-
-```yml
-```
-
-```yml
-```
-
-
-
- 
-  - actions/checkout@v2
-  - Cache SonarCloud packages
-  - Install SonarCloud scanner
-  - Build and analyze
-
   ```yml
-  steps:
-        - name: Set up JDK 11
-          uses: actions/setup-java@v1
-          with:
-            java-version: 1.11
-        
-        - name: Cache SonarCloud packages
-          uses: actions/cache@v1
-          with:
-            path: ~\sonar\cache
-            key: ${{ runner.os }}-sonar
-            restore-keys: ${{ runner.os }}-sonar
-        - name: Cache SonarCloud scanner
-          id: cache-sonar-scanner
-          uses: actions/cache@v1
-          with:
-            path: .\.sonar\scanner
-            key: ${{ runner.os }}-sonar-scanner
-            restore-keys: ${{ runner.os }}-sonar-scanner
-        - name: Install SonarCloud scanner
-          if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-          shell: powershell
-          run: |
-            New-Item -Path .\.sonar\scanner -ItemType Directory
-            dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-        - name: Build and analyze
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          shell: powershell
-          run: |
-            .\.sonar\scanner\dotnet-sonarscanner begin /k:"acn-sbuad_learning-actions" /o:"acn-sbuad" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-            dotnet build
-            .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+  - name: Cache SonarCloud packages
+    uses: actions/cache@v1
+    with:
+      path: ~\sonar\cache
+      key: ${{ runner.os }}-sonar
+      restore-keys: ${{ runner.os }}-sonar
+  - name: Cache SonarCloud scanner
+    id: cache-sonar-scanner
+    uses: actions/cache@v1
+    with:
+      path: .\.sonar\scanner
+      key: ${{ runner.os }}-sonar-scanner
+      restore-keys: ${{ runner.os }}-sonar-scanner
+  - name: Install SonarCloud scanner
+    if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+    shell: powershell
+    run: |
+      New-Item -Path .\.sonar\scanner -ItemType Directory
+      dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
   ```
 
-
+  Three steps related to setting up SonarCloud follow. We won't go into detail here, as the benefit of using a ready template is not having to know the intricate details of every step that you utilize. SonarCloud keeps track of this for us!
   
+  ```yml
+  - name: Build and analyze
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    shell: powershell
+    run: |
+      .\.sonar\scanner\dotnet-sonarscanner begin /k:"acn-sbuad_learning-actions" /o:"acn-sbuad" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+      dotnet build
+      .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+  ```
+
+  The final step in the job, and workflow builds and analyses our project. 
+  Two secrets are used: `${{ secrets.GITHUB_TOKEN }}` and `${{ secrets.SONAR_TOKEN }}`.
+  The SONAR_TOKEN you created yourself a few tasks back. The GITHUB_TOKEN is available for the workflow and grants the workflow [a number of permissions](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token). 
+
+    
 ### Step 6 - Trigger SonarCloud analysis
+
+Now that our workflow is complete, let's push the code to main and see how it runs!
+
+  > ❓ What event can you trigger for the code analysis to run? 
+
+Follow the analysis workflow in the `actions` tab. Once completed, navigate back to SonarCloud. 
+
+If the workflow ran successfully, you should be able to see a report generated for the state of your main branch, and any pull request that triggered the analysis.
 
   ![SonarCloud report](imgs/sonar-report.PNG)
 
 
 
+## Final Reflection
 
-Useful links
+In this workshop
 
-https://github.com/marketplace/actions/send-email
+### Further reading
 
-https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
+There are many resources available online for learning more about workflows. A good starting point would be [GitHub's own documentation](https://docs.github.com/en/actions).
+
+
+And don't forget to set aside time to dive into the heaps of actions to explore in [GitHub Marketplace](https://github.com/marketplace?type=actions). 
+
+
+  > ⚠️ Warning: Always perform your due diligence when including an action that is not from a verified creator or published by GitHub itself (these actions alway begin with `actions/` e.g. `actions/checkout`).

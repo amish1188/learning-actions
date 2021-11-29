@@ -339,13 +339,16 @@ folder. Name the file `dotnet-analysis.yml`.
 
 3. Copy the provided template workflow into the file you just created.
 
-4. Change the name of the workflow to `.NET Analysi`
+4. Change the name of the workflow to `.NET Analysis`
 
-5. On the second to last line add the following code. 
+5. Change the runner to `windows-2022`
+
+As we are running a .NET 6 project, we need to use an agent with the .NET 6 SDK installed, or install it manually. We are opting for the first option.
+
+
+6. On the second to last line add the following code. 
     Replace the placeholder `<insert_your_build_command>` 
     with `dotnet build`
-
-  
 
 
 

@@ -508,10 +508,12 @@ If the workflow ran successfully, you should be able to see a report generated f
   ![SonarCloud report](imgs/sonar-report.PNG)
 
 
-
 ## Final Reflection
 
-In this workshop
+In this workshop, we have mainly worked with workflows supporting/enabling CI.
+The CD part of it is left up to you! Which workflow and actions would you need to deploy the Function App to Azure? Figuring this out could be your next task and a way to dig deeper into the topics of this workshop.
+
+Thanks for participating, and good luck on your development journey!
 
 ### Further reading
 

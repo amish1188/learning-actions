@@ -2,7 +2,7 @@
 Welcome to this repository for learning GitHub Actions!
 
 
-This repository contains a Function App project along with a unit test project. 
+This repository contains an Azure Function App project along with a unit test project. 
 For this workshop, your task is to build GitHub Actions to automate developer tasks for the repository. 
 
 ## Pre requisites
@@ -10,11 +10,14 @@ For this workshop, your task is to build GitHub Actions to automate developer ta
 1. A personal GitHub account. 
 If you dont have one, [a GitHub account can be created for free](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
 
-2. [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+2. A code editor. We recommend [Visual Studio Code](https://code.visualstudio.com/).
+
+3. [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 
 ## Task 1 - Fork the repository to your own GitHub account
 
+Forkt he g
 In a tool of your choice clone the GitHub repository.
 
 ## Task 2 - Automating building and running tests on project
@@ -26,7 +29,7 @@ workflows based on the files in your repository.
 
 
 **Lets try setting up a build and test workflow from a template!**
-## :pencil2: Task 2.1 - up a workflow from template
+## ✏️ Task 2.1 - up a workflow from template
 
 A given workflow for a repository woul
 ### Step 1 - Go to the `Actions` tab for your repository.
@@ -40,7 +43,7 @@ A given workflow for a repository woul
 
 A yml file containing the workflow is automatically generated for you. 
 
-> :information_source: **Notice the path to the file `.github/workflows`**:All workflows must be placed in this directory to be picked up by GitHub.
+> ⚠️ Note the path to the file **`.github/workflows`**. All workflows must be placed in this directory to be picked up by GitHub.
 
 ### Step 3 - Set the correct .NET version
 
@@ -68,7 +71,7 @@ Commit the file as shown in the picture bewlow. Once completed, follow the workf
 
   ![Commit details](imgs/start-commit.PNG)
 
-## :pencil2: Task 2.2 - Customize the template workflow 
+## ✏️ Task 2.2 - Customize the template workflow 
 
 It is seldom the case that you can create a workflow based on a template 
 and have it suit your needs out of the box. 
@@ -123,7 +126,7 @@ In task 3 we will explore some of the developer workflows that can be
 automated.
 
 
-## :pencil2: Task 3.1 
+## ✏️ Task 3.1 
 
 In projects with large code bases labels are often used for both issues and pull requests to identify which part of the solution they relate to. 
 
@@ -142,7 +145,7 @@ A prerequisite for the action we are using is a file that defines the labels and
 Create an empty file called `labeler.yml` in the `.github` folder
 and copy the content below.
 
-  >  :warning: Note the file ending is `.yml` and not `.yaml` as we have set for the workflows. The workflow will fail if the file name doesn't match exactly what the action expects.
+  >  ⚠️ Note the file ending is `.yml` and not `.yaml` as we have set for the workflows. The workflow will fail if the file name doesn't match exactly what the action expects.
 
 ```yaml
 area/test:

@@ -91,11 +91,12 @@ we do not expect any pull requests for this repository.
 
 ### Step 4 - Add a scheduled event trigger for the workflow
 
-GitHub Workflows supports scheduled events. 
+GitHub Workflows supports scheduled events, meaning that you 
+can trigger your workflow based on a schedule. This could be useful if there are weekly or daily tasks such as patching your code or closing stale issues.
 
-[Here you find documentation](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#scheduled-events) on the syntax of setting up a scheduled event.
+Read up on [how to set up a scheduled event trigger](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#scheduled-events). 
 
-Can you schedule this workflow to trigger at the top of every hour, Monday - Friday? 
+**Can you schedule this workflow to trigger at the top of every hour, Monday - Friday?**
 
 
 

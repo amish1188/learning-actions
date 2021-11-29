@@ -167,6 +167,9 @@ each label.
 
 ### Step 2 - Set up a workflow for automatic labeling on PR
 
+In the `.github/workflows` folder create a new file and name it ``pr-labeler.yaml`.
+Copy the code below into the file.
+
 ```yaml
 name: Pull Request Labeler
 on: [pull_request_target]
@@ -177,13 +180,92 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: [insert correct action]
+    - name: Labeler
+      uses: [insert correct action]
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 ```
 
+This defines an action that triggers on the event of a pull requests. 
+The key word `pull_request_target` differs from `pull_request` in that
+the workflow will run in the context of the base of the pull request, rather than the merge commit. 
 
 
+### Step 3 - Complete the workflow file
+
+The workflow copied in step 2 is not valid. The action to use is missing.
+
+Find the correct action to insert from [Github Marketplace for Actions](https://github.com/marketplace?type=actions).
+
+>:balloon: Hint: The action is published by `actions` and we are working on adding a `Label` to a pull request.
+
+
+
+
+
+Push the changes to GitHub
+
+
+### Step 4 - Create a PR to test the new workflow
+
+In GitHub, navigate to `SampleFunctionApp.Test\FunctionsTest.cs`.
+
+Enable editing of the file by clicking the pencil icon
+
+  ![Example of issue labeling in repository](imgs/edit-file-github.png)
+
+Copy the code block below into the file.
+```cs
+[Fact]
+ public async void HttpTriggerWithParams2()
+ {
+     var request = TestFactory.CreateHttpRequest("name", "Nancy");
+     var response = (OkObjectResult)await Function1.Run(request, logger);
+     Assert.Equal("Hello Nancy! Welcome to Azure Functions!", response.Value);
+ }
+```
+
+Your file should look like this after adding the new test.
+
+```cs
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Xunit;
+
+namespace SampleFunctionApp.Test
+{
+    public class Function1Test
+    {
+        private readonly ILogger logger = NullLoggerFactory.Instance.CreateLogger("Null Logger");
+
+        [Fact]
+        public async void HttpTriggerWithParams()
+        {
+            var request = TestFactory.CreateHttpRequest("name", "Bill");
+            var response = (OkObjectResult)await Function1.Run(request, logger);
+            Assert.Equal("Hello Bill! Welcome to Azure Functions!", response.Value);
+        }
+           
+        [Fact]
+         public async void HttpTriggerWithParams2()
+         {
+             var request = TestFactory.CreateHttpRequest("name", "Nancy");
+             var response = (OkObjectResult)await Function1.Run(request, logger);
+             Assert.Equal("Hello Nancy! Welcome to Azure Functions!", response.Value);
+         }
+        
+        [Fact]
+        public async void HttpTriggerWithoutParams()
+        {
+            var request = TestFactory.CreateHttpRequest("", "");
+            var response = (OkObjectResult)await Function1.Run(request, logger);
+            Assert.Equal("Hello there! Welcome to Azure Functions!", response.Value);
+        }
+    }
+}
+
+```
 
 Useful links
 

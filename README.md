@@ -28,6 +28,7 @@ workflows based on the files in your repository.
 **Lets try setting up a build and test workflow from a template!**
 ## Task 2.1 - up a workflow from template
 
+A given workflow for a repository woul
 ### Step 1 - Go to the `Actions` tab for your repository.
 
   ![Marked Actions tab on page](imgs/find-actions-in-tab.PNG)
@@ -107,6 +108,28 @@ Read up on [how to set up a scheduled event trigger](https://docs.github.com/en/
 **Can you schedule this workflow to trigger at the top of every hour, Monday - Friday?**
 
 
+## Task 3 - Automating developer workflows
+
+A great benefit to GitHub Actions is that it does not only support 
+automation of CI/CD workflows. Workflows in GitHub allow us to automate
+time consuming and error prone developer workflows, such as
+
+- issue and pull request labeling
+- assignment of issues and/or pull request to developers
+- creation of release notes
+- patching of dependencies
+
+In task 3 we will explore some of the developer workflows that can be 
+automated.
+
+
+## :balloon: Task 3.1 
+
+In projects with large code bases labels are often used for both issues and pull requests to identify which part of the solution they relate to. 
+
+Below is an example of some issues from [Azure's repository azure-sdk-for-net](https://github.com/Azure/azure-sdk-for-net/issues). Notice the different labels assigned to each issue.
+
+  ![Example of issue labeling in repository](imgs/labels-azure.png)
 
 
 

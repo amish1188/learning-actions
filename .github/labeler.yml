@@ -1,8 +1,10 @@
-# Labels for solutions
-solution/SimpleFunctionApp:
-  - 'SimpleFunctionApp/*'
-  - 'SimpleFunctionApp.Test/*'
-
-# Labels for areas
+```yaml
 area/test:
   - 'SimpleFunctionApp.Test/*'
+
+area/automation:
+  - '.github/**/*'
+
+area/development:
+  - 'SimpleFunctionApp/*'
+```

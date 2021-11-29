@@ -190,6 +190,8 @@ This defines an action that triggers on the event of a pull requests.
 The key word `pull_request_target` differs from `pull_request` in that
 the workflow will run in the context of the base of the pull request, rather than the merge commit. 
 
+A single job `label` running on an `ubuntu-latest` runner defines a single step `Labeler` using a not yet defined action. The action is given access to a secret from the repository.
+
 
 ### Step 3 - Complete the workflow file
 
@@ -201,9 +203,6 @@ Find the correct action to insert from [Github Marketplace for Actions](https://
 
 
 
-
-
-Push the changes to GitHub
 
 
 ### Step 4 - Create a PR to test the new workflow
@@ -228,10 +227,7 @@ Copy the code block below into the file.
 Your file should look like this after adding the new test.
 
 ```cs
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
-using Xunit;
+// ommited using statements
 
 namespace SampleFunctionApp.Test
 {
@@ -266,6 +262,12 @@ namespace SampleFunctionApp.Test
 }
 
 ```
+
+Make sure to give the change a descriptive name, select the `create a new branch`
+option and complete the pull request creation.
+
+  ![Create PR in GitHub](imgs/create-pr.PNG)
+
 
 Useful links
 

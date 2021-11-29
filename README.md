@@ -12,8 +12,9 @@ If you dont have one, [a GitHub account can be created for free](https://github.
 
 2. [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
-## Task 1 - Clone the repository to your own GitHub account
-In a tool of your choice clone the github
+## Task 1 - Fork the repository to your own GitHub account
+
+In a tool of your choice clone the GitHub repository.
 
 ## Task 2 - Automating building and running tests on project
 
@@ -22,42 +23,43 @@ One of the reasons for this is that there are many workflows
 readily available for you, and GitHub even recommends suitable 
 workflows based on the files in your repository.
 
-## Task 2.1 - Set up a workflow from template
+### Task 2.1 - Set up a workflow from template
 
 1. Go to the `Actions` tab for your repository.
 
-![Marked Actions tab on page](imgs/find-actions-in-tab.PNG)
+    ![Marked Actions tab on page](imgs/find-actions-in-tab.PNG)
 
 
 2. Find the `.NET` workflow and select `Set up this workflow`.
 
-![The .NET workflow illustration](imgs/dotnet-workflow.PNG)
+    ![The .NET workflow illustration](imgs/dotnet-workflow.PNG)
 
-A yml file containing the workflow is automatically generated for you. 
-Notice the path to the file `.github/workflows`. 
-All workflows must be places in this directory to be picked up by GitHub.
+    A yml file containing the workflow is automatically generated for you. 
+
+    > :information_source: **Notice the path to the file `.github/workflows`**: All workflows must be placed in this directory to be picked up by GitHub.
 
 3. Change line 19 from
 
-```yml
-dotnet-version: 5.0.x
-```
+    ```yml
+    dotnet-version: 5.0.x
+    ```
 
-to 
+    to 
 
-```yml
-dotnet-version: 6.0.x
-```
+    ```yml
+    dotnet-version: 6.0.x
+    ```
 
 4. Study the workflow file. Can you identify the key components? 
 
-  - Which events does the workflow listen after? 
-  - The runner defined, is it a self-hosted agent or a GitHub runner?
-  - Could you think of another runner that could have been used? [Available runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources)
+    - Which events does the workflow listen after? 
+    - The runner defined, is it a self-hosted agent or a GitHub runner?
+    - Could you think of another runner that could have been used? [Available runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources)
 
 
 5. Commit the file to the repository 
-![Commit details](imgs/start-commit.PNG)
+
+    ![Commit details](imgs/start-commit.PNG)
 
 6. Follow the workflow run from the `Actions` tab.
 

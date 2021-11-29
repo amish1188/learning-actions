@@ -1,0 +1,8 @@
+# Labels for solutions
+solution/SimpleFunctionApp:
+  - 'SimpleFunctionApp/*'
+  - 'SimpleFunctionApp.Test/*'
+
+# Labels for areas
+area/test:
+  - 'SimpleFunctionApp.Test/*'

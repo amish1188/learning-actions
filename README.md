@@ -132,6 +132,46 @@ Below is an example of some issues from [Azure's repository azure-sdk-for-net](h
   ![Example of issue labeling in repository](imgs/labels-azure.png)
 
 
+We will be setting up a workflow to automatically label pull requests based on the files that the PR modifies using an action from the GitHub Marketplace.
+
+
+### - [ ] Step 1 - Define the labels for the workflow to use
+
+A prerequisite for the action we are using is a file that defines the labels and the files in the repository that each label applies to.
+
+Create an empty file called `labeler.yaml` in the `.github` folder
+and copy the content below.
+
+```yaml
+area/test:
+  - 'SimpleFunctionApp.Test/*'
+
+area/automation:
+  - '.github/**/*'
+
+area/development:
+  - 'SimpleFunctionApp/*'
+```
+
+This defines thre labels `area/test`, `area/automation`, and `area/development`.
+
+### Step 2 - Set up a workflow for automatic labeling on PR
+
+```yaml
+name: Pull Request Labeler
+on: [pull_request_target]
+
+jobs:
+  label:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: [insert correct action]
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+```
+
 
 
 

@@ -322,8 +322,30 @@ Open the [SonarCloud site](https://sonarcloud.io/) in a browser and log in with 
 
     ![Configured secret displayed in GitHub](imgs/repo-secrets-verification.PNG)
 
-### Step 4 - Set up the GitHub workflow
+### Step 4 - Set up the GitHub workflow 
 
+1. Start by creating a new empty file in your code editor under the `.github/workflows`
+folder. Name the file `dotnet-analysis.yml`.
+
+2. Navigate back to SonarCloud and the configuration of analysis page.
+
+    Click `Continue` to display the second step.
+    
+    This should display different build types.
+    
+    ![Select build type](imgs/sonar-select-build.PNG)
+    
+    Select `.NET`.
+
+3. Copy the provided template workflow into the file you just created.
+
+4. Change the name of the workflow to `.NET Analysi`
+
+5. On the second to last line add the following code. 
+    Replace the placeholder `<insert_your_build_command>` 
+    with `dotnet build`
+
+  
 
 
 
